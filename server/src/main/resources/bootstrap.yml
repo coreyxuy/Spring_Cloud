@@ -80,5 +80,5 @@ logging:
     org.springframework.cloud.openfeign: error
     org.springframework.cloud.bus: error
 server:
-  port: 8080
+  port: 8084
 
