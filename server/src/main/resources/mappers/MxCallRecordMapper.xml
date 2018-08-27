@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- cl_operator_mx_call_record表:魔蝎的通话详单模块 -->
+<mapper namespace="com.toloan.pay.mapper.MxCallRecordMapper">
+    <!--返回Map-->        
+    <resultMap id="BaseResultMap" type="com.toloan.pay.pojo.MxCallRecord">
+        <id column="id" property="id" jdbcType="BIGINT" />
+        <result column="user_id" property="userId" jdbcType="BIGINT" />
+        <result column="transend" property="transend" jdbcType="VARCHAR" />
+        <result column="peernum" property="peernum" jdbcType="VARCHAR" />
+        <result column="groupname" property="groupname" jdbcType="VARCHAR" />
+        <result column="companyname" property="companyname" jdbcType="VARCHAR" />
+        <result column="city" property="city" jdbcType="VARCHAR" />
+        <result column="callcnt6m" property="callcnt6m" jdbcType="INTEGER" />
+    </resultMap>
+    
+    <!--基本的sql查询字段 公共引用...-->
+    <sql id="Base_Column_List">
+        id,user_id,transend,peernum,groupname,companyname,city,callcnt6m
+    </sql>
+    
+    
+    <insert id="save" parameterType="com.toloan.pay.pojo.MxCallRecord">
+        insert into cl_operator_mx_call_record(user_id,transend,peernum,groupname,companyname,city,callcnt6m)values(#{userId,jdbcType=BIGINT},#{transend,jdbcType=VARCHAR},#{peernum,jdbcType=VARCHAR},#{groupname,jdbcType=VARCHAR},#{companyname,jdbcType=VARCHAR},#{city,jdbcType=VARCHAR},#{callcnt6m,jdbcType=INTEGER})
+    </insert>
+
+</mapper>

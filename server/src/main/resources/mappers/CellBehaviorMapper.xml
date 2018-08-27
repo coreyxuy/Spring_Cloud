@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- cl_operator_mx_cell_behavior表:用户行为分析就是运营商消费数据模块 -->
+<mapper namespace="com.toloan.pay.mapper.CellBehaviorMapper">
+    <!--返回Map-->        
+    <resultMap id="BaseResultMap" type="com.toloan.pay.pojo.CellBehavior">
+        <id column="id" property="id" jdbcType="BIGINT" />
+        <result column="user_id" property="userId" jdbcType="BIGINT" />
+        <result column="req_log_id" property="reqLogId" jdbcType="BIGINT" />
+        <result column="order_no" property="orderNo" jdbcType="VARCHAR" />
+        <result column="smscnt" property="smscnt" jdbcType="VARCHAR" />
+        <result column="netflow" property="netflow" jdbcType="VARCHAR" />
+        <result column="totalamount" property="totalamount" jdbcType="VARCHAR" />
+        <result column="cellmth" property="cellmth" jdbcType="VARCHAR" />
+        <result column="cellloc" property="cellloc" jdbcType="VARCHAR" />
+        <result column="celloperator_zh" property="celloperatorZh" jdbcType="VARCHAR" />
+        <result column="callcnt" property="callcnt" jdbcType="VARCHAR" />
+        <result column="dialedtime" property="dialedtime" jdbcType="VARCHAR" />
+        <result column="rechangecnt" property="rechangecnt" jdbcType="VARCHAR" />
+        <result column="dialcnt" property="dialcnt" jdbcType="VARCHAR" />
+        <result column="rechange_cnt" property="rechangeCnt" jdbcType="VARCHAR" />
+        <result column="rechangeamount" property="rechangeamount" jdbcType="VARCHAR" />
+    </resultMap>
+    
+    <!--基本的sql查询字段 公共引用...-->
+    <sql id="Base_Column_List">
+        id,user_id,req_log_id,order_no,smscnt,netflow,totalamount,cellmth,cellloc,celloperator_zh,callcnt,dialedtime,rechangecnt,dialcnt,rechange_cnt,rechangeamount 
+    </sql>
+    
+    
+    <insert id="save" parameterType="com.toloan.pay.pojo.CellBehavior">
+        insert into cl_operator_mx_cell_behavior(user_id,req_log_id,order_no,smscnt,netflow,totalamount,cellmth,cellloc,celloperator_zh,callcnt,dialedtime,rechangecnt,dialcnt,rechange_cnt,rechangeamount)values(#{userId,jdbcType=BIGINT},#{reqLogId,jdbcType=BIGINT},#{orderNo,jdbcType=VARCHAR},#{smscnt,jdbcType=VARCHAR},#{netflow,jdbcType=VARCHAR},#{totalamount,jdbcType=VARCHAR},#{cellmth,jdbcType=VARCHAR},#{cellloc,jdbcType=VARCHAR},#{celloperatorZh,jdbcType=VARCHAR},#{callcnt,jdbcType=VARCHAR},#{dialedtime,jdbcType=VARCHAR},#{rechangecnt,jdbcType=VARCHAR},#{dialcnt,jdbcType=VARCHAR},#{rechangeCnt,jdbcType=VARCHAR},#{rechangeamount,jdbcType=VARCHAR})
+    </insert>
+
+</mapper>

@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- arc_channel_switch表:渠道号及对应转化率表模块 -->
+<mapper namespace="com.toloan.pay.mapper.ChannelSwitchMapper">
+    <!--返回Map-->        
+    <resultMap id="BaseResultMap" type="com.toloan.pay.pojo.ChannelSwitch">
+        <id column="id" property="id" jdbcType="BIGINT" />
+        <result column="channel_id" property="channelId" jdbcType="VARCHAR" />
+        <result column="switchs" property="switchs" jdbcType="VARCHAR" />
+        <result column="channel_name" property="channelName" jdbcType="VARCHAR" />
+        <result column="register_rate" property="registerRate" jdbcType="DECIMAL" />
+        <result column="auth_rate" property="authRate" jdbcType="DECIMAL" />
+        <result column="borrow_rate" property="borrowRate" jdbcType="DECIMAL" />
+        <result column="loan_rate" property="loanRate" jdbcType="DECIMAL" />
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    </resultMap>
+    
+    <!--基本的sql查询字段 公共引用...-->
+    <sql id="Base_Column_List">
+        id,channel_id,switchs,channel_name,register_rate,auth_rate,borrow_rate,loan_rate,create_time
+    </sql>
+    
+    <!-- 基本的sql查询条件公共引用 -->
+    <sql id="searchBy">
+        <trim prefix="where" prefixOverrides="and|or">
+            <if test=" id != null and id != '' ">
+                id  = #{id,jdbcType=BIGINT}
+            </if>
+            <if test="channelId != null and channelId != '' ">
+                and channel_id = #{channelId,jdbcType=VARCHAR}
+            </if>
+            <if test="switchs != null and switchs != '' ">
+                and switchs = #{switchs,jdbcType=VARCHAR}
+            </if>
+            <if test="channelName != null and channelName != '' ">
+                and channel_name = #{channelName,jdbcType=VARCHAR}
+            </if>
+            <if test="registerRate != null and registerRate != '' ">
+                and register_rate = #{registerRate,jdbcType=DECIMAL}
+            </if>
+            <if test="authRate != null and authRate != '' ">
+                and auth_rate = #{authRate,jdbcType=DECIMAL}
+            </if>
+            <if test="borrowRate != null and borrowRate != '' ">
+                and borrow_rate = #{borrowRate,jdbcType=DECIMAL}
+            </if>
+            <if test="loanRate != null and loanRate != '' ">
+                and loan_rate = #{loanRate,jdbcType=DECIMAL}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime,jdbcType=TIMESTAMP}
+            </if>
+        </trim>
+    </sql>
+    
+    
+    <insert id="save" parameterType="com.toloan.pay.pojo.ChannelSwitch">
+        insert into arc_channel_switch(channel_id,switchs,channel_name,register_rate,auth_rate,borrow_rate,loan_rate,create_time)values(#{channelId,jdbcType=VARCHAR},#{switchs,jdbcType=VARCHAR},#{channelName,jdbcType=VARCHAR},#{registerRate,jdbcType=DECIMAL},#{authRate,jdbcType=DECIMAL},#{borrowRate,jdbcType=DECIMAL},#{loanRate,jdbcType=DECIMAL},#{createTime,jdbcType=TIMESTAMP})
+    </insert>
+
+    <delete id="delSwitchs" parameterType="java.lang.String"  >
+        DELETE FROM arc_channel_switch WHERE channel_id = #{channelId,jdbcType=VARCHAR}
+    </delete>
+
+    <select id="getAllChannel" resultMap="BaseResultMap" parameterType="java.lang.String">
+        	SELECT
+                h.id,
+                h.channel_id,
+                h.switchs,
+                h.channel_name,
+                h.register_rate,
+                h.auth_rate,
+                h.borrow_rate,
+                h.loan_rate,
+                h.create_time,
+                u.`password`
+            FROM
+                arc_channel_switch h  LEFT JOIN
+                arc_channel_user  u on h.id=u.id
+    </select>
+
+    <select id="findByChannel" parameterType="java.lang.String" resultMap="BaseResultMap" >
+        select <include refid="Base_Column_List"/> from arc_channel_switch WHERE channel_id = #{channelId,jdbcType=VARCHAR}
+    </select>
+
+    <update id="update" parameterType="com.toloan.pay.pojo.ChannelSwitch">
+        UPDATE arc_channel_switch
+        SET
+        channel_id   =  #{channelId,jdbcType=VARCHAR},
+        channel_name = #{channelName,jdbcType=VARCHAR},
+        switchs = #{switchs,jdbcType=VARCHAR},
+        register_rate = #{registerRate,jdbcType=DECIMAL},
+        auth_rate = #{authRate,jdbcType=DECIMAL},
+        borrow_rate = #{borrowRate,jdbcType=DECIMAL},
+        loan_rate = #{loanRate,jdbcType=DECIMAL}
+        WHERE
+          id = #{id,jdbcType=BIGINT}
+    </update>
+
+
+    <update id="updateSelective"  parameterType="java.util.HashMap">
+        update arc_channel_switch
+          <set>
+            <if test="channelId != null and channelId != '' ">        
+                channel_id = #{channelId,jdbcType=VARCHAR},                
+            </if>
+            <if test="switchs != null and switchs != '' ">
+                switchs = #{switchs,jdbcType=VARCHAR},
+            </if>
+            <if test="channelName != null and channelName != '' ">        
+                channel_name = #{channelName,jdbcType=VARCHAR},                
+            </if>
+            <if test="registerRate != null and registerRate != '' ">        
+                register_rate = #{registerRate,jdbcType=DECIMAL},                
+            </if>
+            <if test="authRate != null and authRate != '' ">        
+                auth_rate = #{authRate,jdbcType=DECIMAL},                
+            </if>
+            <if test="borrowRate != null and borrowRate != '' ">        
+                borrow_rate = #{borrowRate,jdbcType=DECIMAL},                
+            </if>
+            <if test="loanRate != null and loanRate != '' ">        
+                loan_rate = #{loanRate,jdbcType=DECIMAL},                
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP}                
+            </if>
+        </set>    
+        where id = #{id ,jdbcType=INTEGER}
+    </update>
+
+    <update id="updateSwitchs" parameterType="com.toloan.pay.pojo.ChannelSwitch">
+        UPDATE arc_channel_switch
+        SET
+        channel_id   =  #{channelId,jdbcType=VARCHAR},
+        channel_name = #{channelName,jdbcType=VARCHAR},
+        switchs = #{switchs,jdbcType=VARCHAR},
+        register_rate = #{registerRate,jdbcType=DECIMAL},
+        auth_rate = #{authRate,jdbcType=DECIMAL},
+        borrow_rate = #{borrowRate,jdbcType=DECIMAL},
+        loan_rate = #{loanRate,jdbcType=DECIMAL}
+        WHERE
+          id = #{id,jdbcType=BIGINT}
+    </update>
+
+
+    <select id="findByPrimary" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        select
+        <include refid="Base_Column_List" />
+        from arc_channel_switch
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+
+	<select id="findSelective" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        select
+        <include refid="Base_Column_List" />
+        from arc_channel_switch
+        <include refid="searchBy"/>
+    </select>
+               
+    <select id="listSelective" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        select
+        <include refid="Base_Column_List" />
+        from arc_channel_switch
+        <include refid="searchBy"/>
+    </select>
+    <select id="getChannalCode" resultType="com.toloan.pay.pojo.ChannelSwitch" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM  arc_channel_switch WHERE channel_id = #{channelCode ,jdbcType=INTEGER}
+
+    </select>
+    <select id="getChannalName" parameterType="string" resultType="java.lang.String">
+        SELECT channel_id FROM arc_channel_switch  WHERE channel_id = #{channelId ,jdbcType=INTEGER} limit 1
+    </select>
+
+    <select id="getAllChannelSys" resultMap="BaseResultMap" parameterType="String">
+        SELECT
+        h.id,
+        h.channel_id,
+        h.switchs,
+        h.channel_name,
+        h.register_rate,
+        h.auth_rate,
+        h.borrow_rate,
+        h.loan_rate,
+        h.create_time,
+        u.`password`
+        FROM
+        arc_channel_switch h  LEFT JOIN
+        arc_channel_user  u on h.id=u.id
+        WHERE channel_name LIKE CONCAT('%',#{channelName},'%')
+    </select>
+
+</mapper>

@@ -1,0 +1,498 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.toloan.pay.mapper.UserBaseInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.toloan.pay.pojo.UserBaseInfo" >
+    <constructor >
+      <idArg column="id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="user_id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="phone" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="real_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="age" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="sex" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="national" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="id_no" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="id_addr" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="living_img" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="ocr_img" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="front_img" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="back_img" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="education" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="marry_state" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="company_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="company_phone" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="company_addr" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="company_detail_addr" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="company_coordinate" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="salary" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="working_years" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="working_img" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="live_time" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="live_addr" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="live_detail_addr" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="live_coordinate" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="phone_server_pwd" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="register_addr" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="register_coordinate" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="state" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="black_reason" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="update_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="create_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="living_img_http" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="back_img_http" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="front_img_http" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="working_img_http" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="black_time" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, user_id, phone, real_name, age, sex, national, id_no, id_addr, living_img, ocr_img, 
+    front_img, back_img, education, marry_state, company_name, company_phone, company_addr, 
+    company_detail_addr, company_coordinate, salary, working_years, working_img, live_time, 
+    live_addr, live_detail_addr, live_coordinate, phone_server_pwd, register_addr, register_coordinate, 
+    state, black_reason, update_time, create_time, living_img_http, back_img_http, front_img_http, 
+    working_img_http, black_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from cl_user_base_info
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from cl_user_base_info
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.toloan.pay.pojo.UserBaseInfo" >
+    insert into cl_user_base_info (id, user_id, phone, 
+      real_name, age, sex, 
+      national, id_no, id_addr, 
+      living_img, ocr_img, front_img, 
+      back_img, education, marry_state, 
+      company_name, company_phone, company_addr, 
+      company_detail_addr, company_coordinate, salary, 
+      working_years, working_img, live_time, 
+      live_addr, live_detail_addr, live_coordinate, 
+      phone_server_pwd, register_addr, register_coordinate, 
+      state, black_reason, update_time, 
+      create_time, living_img_http, back_img_http, 
+      front_img_http, working_img_http, black_time
+      )
+    values (#{id,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, #{phone,jdbcType=VARCHAR}, 
+      #{realName,jdbcType=VARCHAR}, #{age,jdbcType=INTEGER}, #{sex,jdbcType=VARCHAR}, 
+      #{national,jdbcType=VARCHAR}, #{idNo,jdbcType=VARCHAR}, #{idAddr,jdbcType=VARCHAR}, 
+      #{livingImg,jdbcType=VARCHAR}, #{ocrImg,jdbcType=VARCHAR}, #{frontImg,jdbcType=VARCHAR}, 
+      #{backImg,jdbcType=VARCHAR}, #{education,jdbcType=VARCHAR}, #{marryState,jdbcType=VARCHAR}, 
+      #{companyName,jdbcType=VARCHAR}, #{companyPhone,jdbcType=VARCHAR}, #{companyAddr,jdbcType=VARCHAR}, 
+      #{companyDetailAddr,jdbcType=VARCHAR}, #{companyCoordinate,jdbcType=VARCHAR}, #{salary,jdbcType=VARCHAR}, 
+      #{workingYears,jdbcType=VARCHAR}, #{workingImg,jdbcType=VARCHAR}, #{liveTime,jdbcType=VARCHAR}, 
+      #{liveAddr,jdbcType=VARCHAR}, #{liveDetailAddr,jdbcType=VARCHAR}, #{liveCoordinate,jdbcType=VARCHAR}, 
+      #{phoneServerPwd,jdbcType=VARCHAR}, #{registerAddr,jdbcType=VARCHAR}, #{registerCoordinate,jdbcType=VARCHAR}, 
+      #{state,jdbcType=VARCHAR}, #{blackReason,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{livingImgHttp,jdbcType=VARCHAR}, #{backImgHttp,jdbcType=VARCHAR}, 
+      #{frontImgHttp,jdbcType=VARCHAR}, #{workingImgHttp,jdbcType=VARCHAR}, #{blackTime,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.toloan.pay.pojo.UserBaseInfo" >
+    insert into cl_user_base_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="realName != null" >
+        real_name,
+      </if>
+      <if test="age != null" >
+        age,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="national != null" >
+        national,
+      </if>
+      <if test="idNo != null" >
+        id_no,
+      </if>
+      <if test="idAddr != null" >
+        id_addr,
+      </if>
+      <if test="livingImg != null" >
+        living_img,
+      </if>
+      <if test="ocrImg != null" >
+        ocr_img,
+      </if>
+      <if test="frontImg != null" >
+        front_img,
+      </if>
+      <if test="backImg != null" >
+        back_img,
+      </if>
+      <if test="education != null" >
+        education,
+      </if>
+      <if test="marryState != null" >
+        marry_state,
+      </if>
+      <if test="companyName != null" >
+        company_name,
+      </if>
+      <if test="companyPhone != null" >
+        company_phone,
+      </if>
+      <if test="companyAddr != null" >
+        company_addr,
+      </if>
+      <if test="companyDetailAddr != null" >
+        company_detail_addr,
+      </if>
+      <if test="companyCoordinate != null" >
+        company_coordinate,
+      </if>
+      <if test="salary != null" >
+        salary,
+      </if>
+      <if test="workingYears != null" >
+        working_years,
+      </if>
+      <if test="workingImg != null" >
+        working_img,
+      </if>
+      <if test="liveTime != null" >
+        live_time,
+      </if>
+      <if test="liveAddr != null" >
+        live_addr,
+      </if>
+      <if test="liveDetailAddr != null" >
+        live_detail_addr,
+      </if>
+      <if test="liveCoordinate != null" >
+        live_coordinate,
+      </if>
+      <if test="phoneServerPwd != null" >
+        phone_server_pwd,
+      </if>
+      <if test="registerAddr != null" >
+        register_addr,
+      </if>
+      <if test="registerCoordinate != null" >
+        register_coordinate,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="blackReason != null" >
+        black_reason,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="livingImgHttp != null" >
+        living_img_http,
+      </if>
+      <if test="backImgHttp != null" >
+        back_img_http,
+      </if>
+      <if test="frontImgHttp != null" >
+        front_img_http,
+      </if>
+      <if test="workingImgHttp != null" >
+        working_img_http,
+      </if>
+      <if test="blackTime != null" >
+        black_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="realName != null" >
+        #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null" >
+        #{age,jdbcType=INTEGER},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="national != null" >
+        #{national,jdbcType=VARCHAR},
+      </if>
+      <if test="idNo != null" >
+        #{idNo,jdbcType=VARCHAR},
+      </if>
+      <if test="idAddr != null" >
+        #{idAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="livingImg != null" >
+        #{livingImg,jdbcType=VARCHAR},
+      </if>
+      <if test="ocrImg != null" >
+        #{ocrImg,jdbcType=VARCHAR},
+      </if>
+      <if test="frontImg != null" >
+        #{frontImg,jdbcType=VARCHAR},
+      </if>
+      <if test="backImg != null" >
+        #{backImg,jdbcType=VARCHAR},
+      </if>
+      <if test="education != null" >
+        #{education,jdbcType=VARCHAR},
+      </if>
+      <if test="marryState != null" >
+        #{marryState,jdbcType=VARCHAR},
+      </if>
+      <if test="companyName != null" >
+        #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="companyPhone != null" >
+        #{companyPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="companyAddr != null" >
+        #{companyAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="companyDetailAddr != null" >
+        #{companyDetailAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="companyCoordinate != null" >
+        #{companyCoordinate,jdbcType=VARCHAR},
+      </if>
+      <if test="salary != null" >
+        #{salary,jdbcType=VARCHAR},
+      </if>
+      <if test="workingYears != null" >
+        #{workingYears,jdbcType=VARCHAR},
+      </if>
+      <if test="workingImg != null" >
+        #{workingImg,jdbcType=VARCHAR},
+      </if>
+      <if test="liveTime != null" >
+        #{liveTime,jdbcType=VARCHAR},
+      </if>
+      <if test="liveAddr != null" >
+        #{liveAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="liveDetailAddr != null" >
+        #{liveDetailAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="liveCoordinate != null" >
+        #{liveCoordinate,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneServerPwd != null" >
+        #{phoneServerPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="registerAddr != null" >
+        #{registerAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="registerCoordinate != null" >
+        #{registerCoordinate,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="blackReason != null" >
+        #{blackReason,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="livingImgHttp != null" >
+        #{livingImgHttp,jdbcType=VARCHAR},
+      </if>
+      <if test="backImgHttp != null" >
+        #{backImgHttp,jdbcType=VARCHAR},
+      </if>
+      <if test="frontImgHttp != null" >
+        #{frontImgHttp,jdbcType=VARCHAR},
+      </if>
+      <if test="workingImgHttp != null" >
+        #{workingImgHttp,jdbcType=VARCHAR},
+      </if>
+      <if test="blackTime != null" >
+        #{blackTime,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.toloan.pay.pojo.UserBaseInfo" >
+    update cl_user_base_info
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="realName != null" >
+        real_name = #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null" >
+        age = #{age,jdbcType=INTEGER},
+      </if>
+      <if test="sex != null" >
+        sex = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="national != null" >
+        national = #{national,jdbcType=VARCHAR},
+      </if>
+      <if test="idNo != null" >
+        id_no = #{idNo,jdbcType=VARCHAR},
+      </if>
+      <if test="idAddr != null" >
+        id_addr = #{idAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="livingImg != null" >
+        living_img = #{livingImg,jdbcType=VARCHAR},
+      </if>
+      <if test="ocrImg != null" >
+        ocr_img = #{ocrImg,jdbcType=VARCHAR},
+      </if>
+      <if test="frontImg != null" >
+        front_img = #{frontImg,jdbcType=VARCHAR},
+      </if>
+      <if test="backImg != null" >
+        back_img = #{backImg,jdbcType=VARCHAR},
+      </if>
+      <if test="education != null" >
+        education = #{education,jdbcType=VARCHAR},
+      </if>
+      <if test="marryState != null" >
+        marry_state = #{marryState,jdbcType=VARCHAR},
+      </if>
+      <if test="companyName != null" >
+        company_name = #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="companyPhone != null" >
+        company_phone = #{companyPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="companyAddr != null" >
+        company_addr = #{companyAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="companyDetailAddr != null" >
+        company_detail_addr = #{companyDetailAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="companyCoordinate != null" >
+        company_coordinate = #{companyCoordinate,jdbcType=VARCHAR},
+      </if>
+      <if test="salary != null" >
+        salary = #{salary,jdbcType=VARCHAR},
+      </if>
+      <if test="workingYears != null" >
+        working_years = #{workingYears,jdbcType=VARCHAR},
+      </if>
+      <if test="workingImg != null" >
+        working_img = #{workingImg,jdbcType=VARCHAR},
+      </if>
+      <if test="liveTime != null" >
+        live_time = #{liveTime,jdbcType=VARCHAR},
+      </if>
+      <if test="liveAddr != null" >
+        live_addr = #{liveAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="liveDetailAddr != null" >
+        live_detail_addr = #{liveDetailAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="liveCoordinate != null" >
+        live_coordinate = #{liveCoordinate,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneServerPwd != null" >
+        phone_server_pwd = #{phoneServerPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="registerAddr != null" >
+        register_addr = #{registerAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="registerCoordinate != null" >
+        register_coordinate = #{registerCoordinate,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="blackReason != null" >
+        black_reason = #{blackReason,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="livingImgHttp != null" >
+        living_img_http = #{livingImgHttp,jdbcType=VARCHAR},
+      </if>
+      <if test="backImgHttp != null" >
+        back_img_http = #{backImgHttp,jdbcType=VARCHAR},
+      </if>
+      <if test="frontImgHttp != null" >
+        front_img_http = #{frontImgHttp,jdbcType=VARCHAR},
+      </if>
+      <if test="workingImgHttp != null" >
+        working_img_http = #{workingImgHttp,jdbcType=VARCHAR},
+      </if>
+      <if test="blackTime != null" >
+        black_time = #{blackTime,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.toloan.pay.pojo.UserBaseInfo" >
+    update cl_user_base_info
+    set user_id = #{userId,jdbcType=BIGINT},
+      phone = #{phone,jdbcType=VARCHAR},
+      real_name = #{realName,jdbcType=VARCHAR},
+      age = #{age,jdbcType=INTEGER},
+      sex = #{sex,jdbcType=VARCHAR},
+      national = #{national,jdbcType=VARCHAR},
+      id_no = #{idNo,jdbcType=VARCHAR},
+      id_addr = #{idAddr,jdbcType=VARCHAR},
+      living_img = #{livingImg,jdbcType=VARCHAR},
+      ocr_img = #{ocrImg,jdbcType=VARCHAR},
+      front_img = #{frontImg,jdbcType=VARCHAR},
+      back_img = #{backImg,jdbcType=VARCHAR},
+      education = #{education,jdbcType=VARCHAR},
+      marry_state = #{marryState,jdbcType=VARCHAR},
+      company_name = #{companyName,jdbcType=VARCHAR},
+      company_phone = #{companyPhone,jdbcType=VARCHAR},
+      company_addr = #{companyAddr,jdbcType=VARCHAR},
+      company_detail_addr = #{companyDetailAddr,jdbcType=VARCHAR},
+      company_coordinate = #{companyCoordinate,jdbcType=VARCHAR},
+      salary = #{salary,jdbcType=VARCHAR},
+      working_years = #{workingYears,jdbcType=VARCHAR},
+      working_img = #{workingImg,jdbcType=VARCHAR},
+      live_time = #{liveTime,jdbcType=VARCHAR},
+      live_addr = #{liveAddr,jdbcType=VARCHAR},
+      live_detail_addr = #{liveDetailAddr,jdbcType=VARCHAR},
+      live_coordinate = #{liveCoordinate,jdbcType=VARCHAR},
+      phone_server_pwd = #{phoneServerPwd,jdbcType=VARCHAR},
+      register_addr = #{registerAddr,jdbcType=VARCHAR},
+      register_coordinate = #{registerCoordinate,jdbcType=VARCHAR},
+      state = #{state,jdbcType=VARCHAR},
+      black_reason = #{blackReason,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      living_img_http = #{livingImgHttp,jdbcType=VARCHAR},
+      back_img_http = #{backImgHttp,jdbcType=VARCHAR},
+      front_img_http = #{frontImgHttp,jdbcType=VARCHAR},
+      working_img_http = #{workingImgHttp,jdbcType=VARCHAR},
+      black_time = #{blackTime,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

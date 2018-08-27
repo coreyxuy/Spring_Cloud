@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- cl_operator_mx_cell_behavior_check表:用户行为监测模块 -->
+<mapper namespace="com.toloan.pay.mapper.MxCellBehaviorCheckMapper">
+    <!--返回Map-->        
+    <resultMap id="BaseResultMap" type="com.toloan.pay.pojo.MxCellBehaviorCheck">
+        <id column="id" property="id" jdbcType="BIGINT" />
+        <result column="user_id" property="userId" jdbcType="BIGINT" />
+        <result column="req_log_id" property="reqLogId" jdbcType="BIGINT" />
+        <result column="order_no" property="orderNo" jdbcType="VARCHAR" />
+        <result column="phoneusedtime" property="phoneusedtime" jdbcType="VARCHAR" />
+        <result column="contacteachother" property="contacteachother" jdbcType="VARCHAR" />
+        <result column="contactcourt" property="contactcourt" jdbcType="VARCHAR" />
+        <result column="contactcollection" property="contactcollection" jdbcType="VARCHAR" />
+        <result column="phonecall" property="phonecall" jdbcType="VARCHAR" />
+    </resultMap>
+    
+    <!--基本的sql查询字段 公共引用...-->
+    <sql id="Base_Column_List">
+        id,user_id,req_log_id,order_no,phoneusedtime,contacteachother,contactcourt,contactcollection,phonecall 
+    </sql>
+
+    <insert id="save" parameterType="com.toloan.pay.pojo.MxCellBehaviorCheck">
+        insert into cl_operator_mx_cell_behavior_check(user_id,req_log_id,order_no,phoneusedtime,contacteachother,contactcourt,contactcollection,phonecall)values(#{userId,jdbcType=BIGINT},#{reqLogId,jdbcType=BIGINT},#{orderNo,jdbcType=VARCHAR},#{phoneusedtime,jdbcType=VARCHAR},#{contacteachother,jdbcType=VARCHAR},#{contactcourt,jdbcType=VARCHAR},#{contactcollection,jdbcType=VARCHAR},#{phonecall,jdbcType=VARCHAR})
+    </insert>
+
+</mapper>

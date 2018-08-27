@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.toloan.pay.mapper.SmsTplMapper" >
+  <resultMap id="BaseResultMap" type="com.toloan.pay.pojo.SmsTpl" >
+    <constructor >
+      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="type" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="type_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="tpl" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="number" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="state" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, type, type_name, tpl, number, state
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from cl_sms_tpl
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from cl_sms_tpl
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.toloan.pay.pojo.SmsTpl" >
+    insert into cl_sms_tpl (id, type, type_name, 
+      tpl, number, state)
+    values (#{id,jdbcType=INTEGER}, #{type,jdbcType=VARCHAR}, #{typeName,jdbcType=VARCHAR}, 
+      #{tpl,jdbcType=VARCHAR}, #{number,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.toloan.pay.pojo.SmsTpl" >
+    insert into cl_sms_tpl
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="typeName != null" >
+        type_name,
+      </if>
+      <if test="tpl != null" >
+        tpl,
+      </if>
+      <if test="number != null" >
+        number,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="typeName != null" >
+        #{typeName,jdbcType=VARCHAR},
+      </if>
+      <if test="tpl != null" >
+        #{tpl,jdbcType=VARCHAR},
+      </if>
+      <if test="number != null" >
+        #{number,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.toloan.pay.pojo.SmsTpl" >
+    update cl_sms_tpl
+    <set >
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="typeName != null" >
+        type_name = #{typeName,jdbcType=VARCHAR},
+      </if>
+      <if test="tpl != null" >
+        tpl = #{tpl,jdbcType=VARCHAR},
+      </if>
+      <if test="number != null" >
+        number = #{number,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.toloan.pay.pojo.SmsTpl" >
+    update cl_sms_tpl
+    set type = #{type,jdbcType=VARCHAR},
+      type_name = #{typeName,jdbcType=VARCHAR},
+      tpl = #{tpl,jdbcType=VARCHAR},
+      number = #{number,jdbcType=VARCHAR},
+      state = #{state,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="getTpl" resultMap="BaseResultMap" parameterType="java.lang.String">
+    SELECT * FROM  cl_sms_tpl WHERE type = #{type,jdbcType=VARCHAR}
+  </select>
+</mapper>

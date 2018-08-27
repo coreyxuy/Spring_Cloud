@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- cl_operator_td_basic表:同盾运营商认证基本信息表模块 -->
+<mapper namespace="com.toloan.pay.mapper.OperatorTdBasicMapper">
+    <!--返回Map-->        
+    <resultMap id="BaseResultMap" type="com.toloan.pay.pojo.OperatorTdBasic">
+        <id column="id" property="id" jdbcType="BIGINT" />
+        <result column="user_id" property="userId" jdbcType="BIGINT" />
+        <result column="req_log_id" property="reqLogId" jdbcType="BIGINT" />
+        <result column="order_no" property="orderNo" jdbcType="VARCHAR" />
+        <result column="user_mobile" property="userMobile" jdbcType="VARCHAR" />
+        <result column="channel_src" property="channelSrc" jdbcType="VARCHAR" />
+        <result column="channel_attr" property="channelAttr" jdbcType="VARCHAR" />
+        <result column="account_balance" property="accountBalance" jdbcType="VARCHAR" />
+        <result column="current_fee" property="currentFee" jdbcType="VARCHAR" />
+        <result column="credit_level" property="creditLevel" jdbcType="VARCHAR" />
+        <result column="mobile_status" property="mobileStatus" jdbcType="VARCHAR" />
+        <result column="net_time" property="netTime" jdbcType="VARCHAR" />
+        <result column="net_age" property="netAge" jdbcType="INTEGER" />
+        <result column="real_info" property="realInfo" jdbcType="VARCHAR" />
+        <result column="credit_point" property="creditPoint" jdbcType="VARCHAR" />
+        <result column="credit_effective_time" property="creditEffectiveTime" jdbcType="VARCHAR" />
+        <result column="credit_score" property="creditScore" jdbcType="VARCHAR" />
+        <result column="land_level" property="landLevel" jdbcType="VARCHAR" />
+        <result column="roam_state" property="roamState" jdbcType="VARCHAR" />
+        <result column="balance_available" property="balanceAvailable" jdbcType="VARCHAR" />
+        <result column="balance_unavailable" property="balanceUnavailable" jdbcType="VARCHAR" />
+        <result column="prepay_available" property="prepayAvailable" jdbcType="VARCHAR" />
+        <result column="prom_available" property="promAvailable" jdbcType="VARCHAR" />
+        <result column="prepay_unavailable" property="prepayUnavailable" jdbcType="VARCHAR" />
+        <result column="prom_unavailable" property="promUnavailable" jdbcType="VARCHAR" />
+    </resultMap>
+    
+    <!--基本的sql查询字段 公共引用...-->
+    <sql id="Base_Column_List">
+        id,user_id,req_log_id,order_no,user_mobile,channel_src,account_balance,current_fee,credit_level,mobile_status,net_time,net_age,real_info,credit_point,credit_effective_time,credit_score,land_level,roam_state,balance_available,balance_unavailable,prepay_available,prom_available,prepay_unavailable,prom_unavailable,channel_attr
+    </sql>
+
+    <delete id="deleteByUserId" parameterType="java.lang.Long">
+        delete from cl_operator_td_basic where user_id = #{userId,jdbcType=BIGINT}
+    </delete>
+    
+</mapper>

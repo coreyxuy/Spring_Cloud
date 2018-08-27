@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- arc_channel_log表:渠道每日数据记录表模块 -->
+<mapper namespace="com.toloan.pay.mapper.ChannelLogMapper">
+    <!--返回Map-->        
+    <resultMap id="BaseResultMap" type="com.toloan.pay.pojo.ChannelLog">
+        <id column="id" property="id" jdbcType="BIGINT" />
+        <result column="channel_id" property="channelId" jdbcType="VARCHAR" />
+        <result column="register_num" property="registerNum" jdbcType="INTEGER" />
+        <result column="auth_num" property="authNum" jdbcType="INTEGER" />
+        <result column="borrow_num" property="borrowNum" jdbcType="INTEGER" />
+        <result column="loan_num" property="loanNum" jdbcType="INTEGER" />
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    </resultMap>
+    
+    <!--基本的sql查询字段 公共引用...-->
+    <sql id="Base_Column_List">
+        id,channel_id,register_num,auth_num,borrow_num,loan_num,create_time,update_time
+    </sql>
+    
+    <!-- 基本的sql查询条件公共引用 -->
+    <sql id="searchBy">
+        <trim prefix="where" prefixOverrides="and|or">
+            <if test=" id != null and id != '' ">
+                id  = #{id,jdbcType=BIGINT}
+            </if>
+            <if test="channelId != null and channelId != '' ">
+                and channel_id = #{channelId,jdbcType=VARCHAR}
+            </if>
+            <if test="registerNum != null and registerNum != '' ">
+                and register_num = #{registerNum,jdbcType=INTEGER}
+            </if>
+            <if test="authNum != null and authNum != '' ">
+                and auth_num = #{authNum,jdbcType=INTEGER}
+            </if>
+            <if test="borrowNum != null and borrowNum != '' ">
+                and borrow_num = #{borrowNum,jdbcType=INTEGER}
+            </if>
+            <if test="loanNum != null and loanNum != '' ">
+                and loan_num = #{loanNum,jdbcType=INTEGER}
+            </if>
+            <if test="createTime != null">
+                and update_time = #{updateTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime,jdbcType=TIMESTAMP}
+            </if>
+        </trim>
+    </sql>
+    
+    
+    <insert id="save" parameterType="com.toloan.pay.pojo.ChannelLog">
+        insert into arc_channel_log(channel_id,register_num,auth_num,borrow_num,loan_num,create_time)values(#{channelId,jdbcType=VARCHAR},#{registerNum,jdbcType=INTEGER},#{authNum,jdbcType=INTEGER},#{borrowNum,jdbcType=INTEGER},#{loanNum,jdbcType=INTEGER},#{createTime,jdbcType=TIMESTAMP})
+    </insert>
+
+    <select id="findToday" parameterType="java.lang.String" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List" /> FROM  arc_channel_log
+        WHERE
+          DATE_FORMAT(update_time,'%Y-%m-%d') = DATE_FORMAT(SYSDATE(),'%Y-%m-%d')
+        AND channel_id = #{channelId,jdbcType=VARCHAR}
+        limit 1
+    </select>
+
+    <select id="getRegisterNum" parameterType="java.lang.String" resultType="java.lang.Integer" >
+        select count(id) from cl_user WHERE DATE_FORMAT(create_time,'%Y-%m-%d') = DATE_FORMAT(SYSDATE(),'%Y-%m-%d') AND channel = #{channelId,jdbcType=VARCHAR}
+    </select>
+
+    <update id="update" parameterType="com.toloan.pay.pojo.ChannelLog">
+        UPDATE arc_channel_log
+        SET register_num = #{registerNum,jdbcType=INTEGER},
+          auth_num = #{authNum,jdbcType=INTEGER},
+          borrow_num = #{borrowNum,jdbcType=INTEGER},
+          loan_num = #{loanNum,jdbcType=INTEGER},
+          update_time = #{updateTime,jdbcType=TIMESTAMP}
+    </update>
+
+    <select id="findHistoryData" parameterType="java.lang.String" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List"/> FROM
+          arc_channel_log
+        WHERE <![CDATA[ DATE_FORMAT(create_time,'%Y-%m-%d') < DATE_FORMAT(SYSDATE(),'%Y-%m-%d') ]]>
+        AND channel_id = #{channelId,jdbcType=VARCHAR}
+        group BY create_time
+    </select>
+
+</mapper>

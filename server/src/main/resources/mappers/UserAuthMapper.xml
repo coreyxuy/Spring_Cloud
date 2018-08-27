@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.toloan.pay.mapper.UserAuthMapper">
+  <resultMap id="BaseResultMap" type="com.toloan.pay.pojo.UserAuth">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="user_id" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="id_state" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="id_state_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="qq_state" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="qq_state_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="zhima_state" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="zhima_state_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="phone_state" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="phone_state_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="taobao_state" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="taobao_state_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="new_version" javaType="java.lang.Byte" jdbcType="TINYINT" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, user_id, id_state, id_state_time, qq_state, qq_state_time, zhima_state, zhima_state_time, 
+    phone_state, phone_state_time, taobao_state, taobao_state_time, new_version
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from cl_user_auth
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    SELECT  <include refid="Base_Column_List" /> from cl_user_auth
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.toloan.pay.pojo.UserAuth">
+    insert into cl_user_auth (id, user_id, id_state, 
+      id_state_time, qq_state, qq_state_time, 
+      zhima_state, zhima_state_time, phone_state, 
+      phone_state_time, taobao_state, taobao_state_time, 
+      new_version)
+    values (#{id,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, #{idState,jdbcType=VARCHAR}, 
+      #{idStateTime,jdbcType=TIMESTAMP}, #{qqState,jdbcType=VARCHAR}, #{qqStateTime,jdbcType=TIMESTAMP}, 
+      #{zhimaState,jdbcType=VARCHAR}, #{zhimaStateTime,jdbcType=TIMESTAMP}, #{phoneState,jdbcType=VARCHAR}, 
+      #{phoneStateTime,jdbcType=TIMESTAMP}, #{taobaoState,jdbcType=VARCHAR}, #{taobaoStateTime,jdbcType=TIMESTAMP}, 
+      #{newVersion,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.toloan.pay.pojo.UserAuth">
+    insert into cl_user_auth
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="idState != null">
+        id_state,
+      </if>
+      <if test="idStateTime != null">
+        id_state_time,
+      </if>
+      <if test="qqState != null">
+        qq_state,
+      </if>
+      <if test="qqStateTime != null">
+        qq_state_time,
+      </if>
+      <if test="zhimaState != null">
+        zhima_state,
+      </if>
+      <if test="zhimaStateTime != null">
+        zhima_state_time,
+      </if>
+      <if test="phoneState != null">
+        phone_state,
+      </if>
+      <if test="phoneStateTime != null">
+        phone_state_time,
+      </if>
+      <if test="taobaoState != null">
+        taobao_state,
+      </if>
+      <if test="taobaoStateTime != null">
+        taobao_state_time,
+      </if>
+      <if test="newVersion != null">
+        new_version,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="idState != null">
+        #{idState,jdbcType=VARCHAR},
+      </if>
+      <if test="idStateTime != null">
+        #{idStateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="qqState != null">
+        #{qqState,jdbcType=VARCHAR},
+      </if>
+      <if test="qqStateTime != null">
+        #{qqStateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="zhimaState != null">
+        #{zhimaState,jdbcType=VARCHAR},
+      </if>
+      <if test="zhimaStateTime != null">
+        #{zhimaStateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="phoneState != null">
+        #{phoneState,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneStateTime != null">
+        #{phoneStateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="taobaoState != null">
+        #{taobaoState,jdbcType=VARCHAR},
+      </if>
+      <if test="taobaoStateTime != null">
+        #{taobaoStateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="newVersion != null">
+        #{newVersion,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.toloan.pay.pojo.UserAuth">
+    update cl_user_auth
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="idState != null">
+        id_state = #{idState,jdbcType=VARCHAR},
+      </if>
+      <if test="idStateTime != null">
+        id_state_time = #{idStateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="qqState != null">
+        qq_state = #{qqState,jdbcType=VARCHAR},
+      </if>
+      <if test="qqStateTime != null">
+        qq_state_time = #{qqStateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="zhimaState != null">
+        zhima_state = #{zhimaState,jdbcType=VARCHAR},
+      </if>
+      <if test="zhimaStateTime != null">
+        zhima_state_time = #{zhimaStateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="phoneState != null">
+        phone_state = #{phoneState,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneStateTime != null">
+        phone_state_time = #{phoneStateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="taobaoState != null">
+        taobao_state = #{taobaoState,jdbcType=VARCHAR},
+      </if>
+      <if test="taobaoStateTime != null">
+        taobao_state_time = #{taobaoStateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="newVersion != null">
+        new_version = #{newVersion,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.toloan.pay.pojo.UserAuth">
+    update cl_user_auth
+    set user_id = #{userId,jdbcType=BIGINT},
+      id_state = #{idState,jdbcType=VARCHAR},
+      id_state_time = #{idStateTime,jdbcType=TIMESTAMP},
+      qq_state = #{qqState,jdbcType=VARCHAR},
+      qq_state_time = #{qqStateTime,jdbcType=TIMESTAMP},
+      zhima_state = #{zhimaState,jdbcType=VARCHAR},
+      zhima_state_time = #{zhimaStateTime,jdbcType=TIMESTAMP},
+      phone_state = #{phoneState,jdbcType=VARCHAR},
+      phone_state_time = #{phoneStateTime,jdbcType=TIMESTAMP},
+      taobao_state = #{taobaoState,jdbcType=VARCHAR},
+      taobao_state_time = #{taobaoStateTime,jdbcType=TIMESTAMP},
+      new_version = #{newVersion,jdbcType=TINYINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <update id="updateByUserId" parameterType="com.toloan.pay.pojo.UserAuth">
+     update cl_user_auth
+      set user_id = #{userId,jdbcType=BIGINT},
+      id_state = #{idState,jdbcType=VARCHAR},
+      id_state_time = #{idStateTime,jdbcType=TIMESTAMP},
+      qq_state = #{qqState,jdbcType=VARCHAR},
+      qq_state_time = #{qqStateTime,jdbcType=TIMESTAMP},
+      zhima_state = #{zhimaState,jdbcType=VARCHAR},
+      zhima_state_time = #{zhimaStateTime,jdbcType=TIMESTAMP},
+      phone_state = #{phoneState,jdbcType=VARCHAR},
+      phone_state_time = #{phoneStateTime,jdbcType=TIMESTAMP},
+      taobao_state = #{taobaoState,jdbcType=VARCHAR},
+      taobao_state_time = #{taobaoStateTime,jdbcType=TIMESTAMP},
+      new_version = #{newVersion,jdbcType=TINYINT}
+      where user_id = #{userId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPhoneState" parameterType="com.toloan.pay.pojo.UserAuth">
+    UPDATE cl_user_auth
+    SET phone_state = 30 ,
+     phone_state_time = NOW()
+    WHERE user_id = #{userId,jdbcType=BIGINT }
+  </update>
+
+
+  <select id="getUserAutah" parameterType="java.lang.Long"  resultMap="BaseResultMap">
+      SELECT <include refid="Base_Column_List" />  FROM  cl_user_auth
+      WHERE   user_id = #{user_id,jdbcType=BIGINT}
+    </select>
+
+</mapper>
