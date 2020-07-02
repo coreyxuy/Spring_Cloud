@@ -191,7 +191,7 @@ public class UserController {
     @ResponseBody
     private Object Information(@RequestParam(value = "userId") Long userId
     ) {
-        Map<String, Object> map = new HashMap<>();
+        Map<String, Object> map = new HashMap<String, Object>();
         UserAuth userAuth = userAuthService.getUserInfo(userId);
         //获取用户借款状态
         BorrowProgress borrowProgress = borrowProgressService.getBorrowDetail(userId);

@@ -32,15 +32,15 @@ public class UserDetailServiceImpl implements UserDetailService {
 
     @Override
     public int updateUserDetail(UserDetail userDetail) {
-        String idCard = userDetail.getIdNo();
-        String userName = userDetail.getRealName();
-        String mobile = userDetail.getPhone();
-        String channelName = userMapper.getUserChannelCode(userDetail.getUserId());
+        final String idCard = userDetail.getIdNo();
+        final String userName = userDetail.getRealName();
+        final String mobile = userDetail.getPhone();
+        final String channelName = userMapper.getUserChannelCode(userDetail.getUserId());
         if (channelName != null) {
             new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    Map<String, Object> map = new HashMap<>();
+                    Map<String, Object> map = new HashMap<String, Object>();
                     String big_dipper = Global.getValue("Big_Dipper");
                     map.put("idCard", idCard);
                     map.put("userName", userName);

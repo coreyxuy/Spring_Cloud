@@ -137,7 +137,7 @@ public class MxController  {
         }catch (Exception e){
             e.printStackTrace();
         }
-        HashMap<String,Object> params =new HashMap<>();
+        HashMap<String,Object> params =new HashMap<String, Object>();
         params.put("userId",operatorReqLog.getUserId().toString());
 
         final Long userId = operatorReqLog.getUserId();

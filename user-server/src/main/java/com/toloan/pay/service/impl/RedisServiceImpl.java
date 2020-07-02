@@ -8,6 +8,8 @@ import com.toloan.pay.redis.ShardedJedisAction;
 import com.toloan.pay.redis.SimpleUtils;
 import com.toloan.pay.service.RedisService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
+import org.springframework.data.redis.connection.RedisConnection;
 import org.springframework.data.redis.core.RedisCallback;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
@@ -52,10 +54,12 @@ public class RedisServiceImpl  implements RedisService {
      * @return
      */
     @Override
-    public <K, V> Boolean setObj(K key, V value) {
-        return redisTemplate.execute((RedisCallback<Boolean>) connection -> {
-            connection.set(JSON.toJSONBytes(key), JSON.toJSONBytes(value));
-            return true;
+    public <K, V> Boolean setObj(final K key, final V value) {
+        return redisTemplate.execute(new RedisCallback<Boolean>() {
+            public Boolean doInRedis(RedisConnection connection) throws DataAccessException {
+                connection.set(JSON.toJSONBytes(key), JSON.toJSONBytes(value));
+                return true;
+            }
         });
     }
 
@@ -69,10 +73,12 @@ public class RedisServiceImpl  implements RedisService {
      * @return
      */
     @Override
-    public <K, V> Boolean setEx(K key, V value, long time) {
-        return redisTemplate.execute((RedisCallback<Boolean>) connection -> {
-            connection.setEx(JSON.toJSONBytes(key), time, JSON.toJSONBytes(value));
-            return true;
+    public <K, V> Boolean setEx(final K key, final V value, final long time) {
+        return redisTemplate.execute(new RedisCallback<Boolean>() {
+            public Boolean doInRedis(RedisConnection connection) throws DataAccessException {
+                connection.setEx(JSON.toJSONBytes(key), time, JSON.toJSONBytes(value));
+                return true;
+            }
         });
     }
 

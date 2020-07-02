@@ -153,7 +153,7 @@ public class OperatorReqLogServiceImpl implements OperatorReqLogService {
                 MxBasic mb = new MxBasic();
                 mb.setCalldatacheck(callDataCheck);
                 mb.setCarriername(carrierName);
-                HashMap<String, Object> params = new HashMap<>();
+                HashMap<String, Object> params = new HashMap<String, Object>();
                 params.put("userId", userId);
                 if(inTime.equals("运营商未提供入网时间")){
                     inTime="0";

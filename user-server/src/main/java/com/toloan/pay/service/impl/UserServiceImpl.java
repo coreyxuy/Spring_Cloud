@@ -58,12 +58,12 @@ public class UserServiceImpl implements UserService {
      * @return
      */
     @Override
-    public ServerResponse registerUser(HttpServletRequest request, String phone, String loginPwd, String vcode,  String client,  String channelCode) {
+    public ServerResponse registerUser(HttpServletRequest request, final String phone, final String loginPwd, String vcode, String client, final String channelCode) {
         if (!StringUtils.isNumeric(phone) || !RegexUtils.checkMobile(phone) || StringUtils.isEmpty(loginPwd) || StringUtils.isEmpty(vcode)) {
             return ServerResponse.createByErrorMessage("参数有误！");
         }
         //判断手机号是否注册
-        Map<String,Object> params = new HashMap<>();
+        Map<String,Object> params = new HashMap<String, Object>();
         params.put("phone",phone);
         params.put("channel",channelCode);
         int i = userMapper.countPhone(params);
@@ -117,7 +117,7 @@ public class UserServiceImpl implements UserService {
                 @Override
                 public void run() {
                     //蓝带平台导流
-                    Map<String,Object> map = new HashMap<>();
+                    Map<String,Object> map = new HashMap<String, Object>();
                     int mobileType = 4;
                     String url = Global.getValue("Lend_You_Money");
                     String DIVERSION_KEY = "dsQjAfSFwkBCv@*+17fdg8h3iqinIUWDC81*&asdFaGvVsF";
@@ -157,7 +157,7 @@ public class UserServiceImpl implements UserService {
         if (!RegexUtils.checkMobile(loginName)){
             throw new SimpleMessageException("手机格式不正确");
         }
-        Map<String,Object> paremt = new HashMap<>();
+        Map<String,Object> paremt = new HashMap<String, Object>();
         paremt.put("loginName",loginName);
         paremt.put("channelCode",channelCode);
         User user = userMapper.getUserByMobile(paremt);

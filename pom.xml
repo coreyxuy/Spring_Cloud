@@ -4,14 +4,14 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.toloan</groupId>
-	<artifactId>user-cloud</artifactId>
+	<artifactId>Spring_Cloud</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<modules>
-		<module>client</module>
-		<module>server</module>
-		<module>common</module>
+		<module>user-client</module>
+		<module>user-common</module>
+		<module>user-server</module>
 	</modules>
-	<packaging>pom</packaging>
+	<packaging>pom</packaging>F
 
 	<name>user-cloud</name>
 	<description>支付服务</description>

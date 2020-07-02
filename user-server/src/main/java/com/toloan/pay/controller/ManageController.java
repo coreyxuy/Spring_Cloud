@@ -65,7 +65,7 @@ public class ManageController {
         if (!channelUser.getPassword().equalsIgnoreCase(password)) {
            return ServerResponse.createByErrorMessage("用户密码错误!");
         }
-        Map<String,Object> map = new HashMap<>();
+        Map<String,Object> map = new HashMap<String,Object>();
         map.put("userId",channelUser.getId());
         map.put("name",username);
         session.setMaxInactiveInterval(60*10);
@@ -82,7 +82,7 @@ public class ManageController {
     @PostMapping(value = "api/system/updatePassword.htm")
     public ServerResponse updatePassword(@RequestParam(value = "userId") Long userId,
                                          @RequestParam(value = "password") String password){
-        Map<String,Object> map = new HashMap<>();
+        Map<String,Object> map = new HashMap<String,Object> ();
         map.put("userId",userId);
         map.put("password",password);
         int i = channelUserService.updatePassword(map);
@@ -113,7 +113,7 @@ public class ManageController {
                                       @RequestParam(value = "accessCode", required = false) String accessCode,
                                       HttpServletResponse response, HttpServletRequest request, HttpSession session) throws Exception {
         // 登陆后需要将用户放到session域中
-        Map<String, Object> map = new HashMap<>();
+        Map<String, Object> map = new HashMap<String, Object>();
         SystemUser systemUser = systemUserService.getSystemUser(username);
         if (systemUser == null) {
             return ServerResponse.createByErrorMessage("用戶名无效!");
@@ -141,7 +141,7 @@ public class ManageController {
                                       @RequestParam(value = "current") int current,
                                       @RequestParam(value = "pageSize") int pageSize){
         Page<ChannelSwitch> switches = channelSwitchService.getChannelSwitchs(current,pageSize,channelName);
-        Map<String,Object> result = new HashMap<>();
+        Map<String,Object> result = new HashMap<String, Object>();
         result.put("page",new RdPage(switches));
         result.put("switches", switches);
         return ServerResponse.createBySuccess(result);
@@ -165,7 +165,7 @@ public class ManageController {
         ChannelLog today = channelLogService.findTodayData(channelId);
         //新增分页
         Page<ChannelLog> history = channelLogService.findHistoryData(channelId ,current, pageSize);
-        Map<String,Object> result = new HashMap<>();
+        Map<String,Object> result = new HashMap<String, Object>();
         result.put("today",today);
         result.put("page",new RdPage(history));
         result.put("history", history);

@@ -37,7 +37,7 @@ public class JedisConfig {
     public JedisCluster getJedisCluster() {
 
         List<String> nodesList = jedisProperties.getCluster().getNodes();
-        HashSet<HostAndPort> nodesSet = new HashSet<>();
+        HashSet<HostAndPort> nodesSet = new HashSet<HostAndPort>();
         if (nodesList != null && nodesList.size() > 0) {
             for (String node : nodesList) {
                 if (node != null) {
